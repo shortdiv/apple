@@ -1,14 +1,16 @@
+const jsonwebtoken = require("jsonwebtoken");
+
 exports.handler = function(event, context, callback) {
   const params = event.queryStringParameters;
   const cookie = params.cookie;
 
-  // netlifyToken = jsonwebtoken.decode(netlifyToken);
+  const netlifyToken = jsonwebtoken.decode(cookie);
 
-  // const netlifyCookie = cookie.serialize("nf_jwt", netlifyToken, {
-  //   secure: true,
-  //   path: "/",
-  //   expires: new Date(netlifyToken.exp)
-  // });
+  const netlifyCookie = cookie.serialize("nf_jwt", netlifyToken, {
+    secure: true,
+    path: "/",
+    expires: new Date(netlifyToken.exp)
+  });
 
   // const html = `
   // <html lang="en">
@@ -29,6 +31,6 @@ exports.handler = function(event, context, callback) {
 
   callback(null, {
     statusCode: 200,
-    body: JSON.stringify({ cookie, params })
+    body: JSON.stringify({ cookie, netlifyCookie })
   });
 };
