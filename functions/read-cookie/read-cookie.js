@@ -26,7 +26,7 @@ exports.handler = function(event, context, callback) {
     <script>
       setTimeout(function(){
         window.location.href = "https://apple-security.netlify.com"
-      }, 0)
+      }, 1000)
     </script>
   </html>`;
 
