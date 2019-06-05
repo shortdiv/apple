@@ -1,7 +1,7 @@
 const cookie = require("cookie");
 
 exports.handler = function(event, context, callback) {
-  const { headers } = event;
+  const { headers, body } = event;
   const cookieHeader = headers.cookie || "";
   const cookies = cookie.parse(cookieHeader);
 
@@ -32,6 +32,6 @@ exports.handler = function(event, context, callback) {
 
   callback(null, {
     statusCode: 200,
-    body: JSON.stringify({ cookieHeader, cookies, headers })
+    body: JSON.stringify({ cookieHeader, cookies, headers, body })
   });
 };
