@@ -1,12 +1,13 @@
 const jsonwebtoken = require("jsonwebtoken");
+const cookie = require("cookie");
 
 exports.handler = function(event, context, callback) {
   const params = event.queryStringParameters;
-  const cookie = params.cookie;
+  const cookieParam = params.cookie;
 
-  const netlifyToken = jsonwebtoken.decode(cookie);
+  const netlifyToken = jsonwebtoken.decode(cookieParam);
 
-  const netlifyCookie = cookie.serialize("nf_jwt", cookie, {
+  const netlifyCookie = cookie.serialize("nf_jwt", cookieParam, {
     secure: true,
     path: "/",
     expires: new Date(netlifyToken.exp)
