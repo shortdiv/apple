@@ -1,14 +1,16 @@
+const jsonwebtoken = require("jsonwebtoken");
+
 exports.handler = function(event, context, callback) {
   const params = event.queryStringParameters;
   const cookie = params.cookie;
 
-  // const netlifyToken = jsonwebtoken.decode(cookie);
+  const netlifyToken = jsonwebtoken.decode(cookie);
 
-  // const netlifyCookie = cookie.serialize("nf_jwt", netlifyToken, {
-  //   secure: true,
-  //   path: "/",
-  //   expires: new Date(netlifyToken.exp)
-  // });
+  const netlifyCookie = cookie.serialize("nf_jwt", cookie, {
+    secure: true,
+    path: "/",
+    expires: new Date(netlifyToken.exp)
+  });
 
   const html = `
   <html lang="en">
@@ -30,7 +32,7 @@ exports.handler = function(event, context, callback) {
   callback(null, {
     statusCode: 200,
     headers: {
-      "Set-Cookie": cookie,
+      "Set-Cookie": netlifyCookie,
       "Cache-Control": "no-cache",
       "Content-Type": "text/html"
     },
