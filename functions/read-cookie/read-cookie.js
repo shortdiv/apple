@@ -1,17 +1,21 @@
+const cookie = require("cookie");
+const jsonwebtoken = require("jsonwebtoken");
+
 exports.handler = function(event, context, callback) {
   const { headers } = event;
   const bearerToken = headers.authorization;
+  let netlifyToken = bearerToken.split("Bearer ")[1];
 
-  // const netlifyToken = jsonwebtoken.decode(token)
+  netlifyToken = jsonwebtoken.decode(netlifyToken);
 
-  // const netlifyCookie = cookie.serialize("nf_jwt", token, {
-  //   secure: true,
-  //   path: "/",
-  //   expires: new Date(netlifyToken.exp)
-  // });
+  const netlifyCookie = cookie.serialize("nf_jwt", netlifyToken, {
+    secure: true,
+    path: "/",
+    expires: new Date(netlifyToken.exp)
+  });
 
   callback(null, {
     statusCode: 200,
-    body: JSON.stringify({ bearerToken, msg: "hello" })
+    body: JSON.stringify({ netlifyCookie, msg: "hello" })
   });
 };
