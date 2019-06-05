@@ -1,0 +1,14 @@
+{
+  "name": "read-cookie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "read-cookie.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Divya",
+  "license": "MIT",
+  "dependencies": {
+    "cookie": "^0.4.0"
+  }
+}
