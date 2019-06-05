@@ -9,6 +9,7 @@
   "author": "Divya",
   "license": "MIT",
   "dependencies": {
-    "cookie": "^0.4.0"
+    "cookie": "^0.4.0",
+    "jsonwebtoken": "^8.5.1"
   }
 }
