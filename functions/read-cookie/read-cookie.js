@@ -1,7 +1,7 @@
 exports.handler = function(event, context, callback) {
   const { queryStringParameters } = event;
 
-  const { cookie } = queryStringParameters;
+  const cookie = queryStringParameters.cookie;
 
   // netlifyToken = jsonwebtoken.decode(netlifyToken);
 
