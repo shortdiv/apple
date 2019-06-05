@@ -1,6 +1,6 @@
 exports.handler = function(event, context, callback) {
   const { headers } = event;
-  const token = headers.authorization;
+  const token = headers;
 
   // const netlifyToken = jsonwebtoken.decode(token)
 
