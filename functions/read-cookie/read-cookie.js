@@ -13,22 +13,22 @@ exports.handler = function(event, context, callback) {
     expires: new Date(netlifyToken.exp)
   });
 
-  // const html = `
-  // <html lang="en">
-  //   <head>
-  //     <meta charset="utf-8">
-  //   </head>
-  //   <body>
-  //     <noscript>
-  //       <meta http-equiv="refresh" content="0; url="https://apple-security.netlify.com" />
-  //     </noscript>
-  //   </body>
-  //   <script>
-  //     setTimeout(function(){
-  //       window.location.href = "https://apple-security.netlify.com"
-  //     }, 1000)
-  //   </script>
-  // </html>`;
+  const html = `
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+    </head>
+    <body>
+      <noscript>
+        <meta http-equiv="refresh" content="0; url="https://apple-security.netlify.com" />
+      </noscript>
+    </body>
+    <script>
+      setTimeout(function(){
+        window.location.href = "https://apple-security.netlify.com"
+      }, 1000)
+    </script>
+  </html>`;
 
   callback(null, {
     statusCode: 200,
@@ -37,6 +37,6 @@ exports.handler = function(event, context, callback) {
       "Cache-Control": "no-cache",
       "Content-Type": "text/html"
     },
-    body: JSON.stringify({ cookieParam, netlifyToken })
+    body: html
   });
 };
