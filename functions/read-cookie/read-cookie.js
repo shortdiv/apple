@@ -37,6 +37,6 @@ exports.handler = function(event, context, callback) {
       "Cache-Control": "no-cache",
       "Content-Type": "text/html"
     },
-    body: JSON.stringify({ cookieParam })
+    body: JSON.stringify({ cookieParam, netlifyToken })
   });
 };
